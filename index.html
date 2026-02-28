@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovating Disaster Education – International Conference</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Sans:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+  :root {
+    --yellow: #FFD700;
+    --yellow-dim: rgba(255,215,0,0.15);
+    --yellow-glow: rgba(255,215,0,0.25);
+    --navy: #1C2833;
+    --navy-light: #2C3E50;
+    --slate: #7F8C8D;
+    --white: #FDFDFD;
+    --text: #2C3E50;
+    --text-muted: #7F8C8D;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .top-bar {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(28,40,51,0.95);
+    backdrop-filter: blur(10px);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.75rem 2rem;
+    border-bottom: 1px solid rgba(255,215,0,0.15);
+  }
+  .top-bar .logo {
+    font-family: 'Noto Serif', 'Noto Serif KR', serif;
+    font-size: 0.85rem; font-weight: 600;
+    color: var(--yellow);
+    letter-spacing: 0.04em;
+  }
+  .nav-links { display:flex; gap:1.5rem; align-items:center; }
+  .nav-links a {
+    color: rgba(253,253,253,0.6); text-decoration:none;
+    font-size: 0.75rem; text-transform:uppercase; letter-spacing:0.12em;
+    font-weight: 500; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--yellow); }
+  .lang-toggle {
+    background: rgba(255,215,0,0.12); border:1px solid rgba(255,215,0,0.3);
+    color: var(--yellow); padding: 0.35rem 0.85rem;
+    font-size: 0.7rem; font-weight:600; letter-spacing:0.1em;
+    cursor:pointer; transition: all 0.3s; text-decoration:none;
+    text-transform: uppercase;
+  }
+  .lang-toggle:hover { background: var(--yellow); color: var(--navy); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+    position:relative; background:var(--navy); color:var(--white);
+    padding: 6rem 2rem 4rem; overflow:hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 70% 50% at 15% 85%, rgba(255,215,0,0.08), transparent),
+      radial-gradient(ellipse 50% 40% at 85% 15%, rgba(255,215,0,0.04), transparent);
+    z-index:1;
+  }
+  .hero-grid {
+    position:absolute; inset:0; opacity:0.03;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 59px, var(--white) 59px, var(--white) 60px),
+      repeating-linear-gradient(90deg, transparent, transparent 59px, var(--white) 59px, var(--white) 60px);
+    z-index:0;
+  }
+  .hero-ribbon {
+    position:absolute; top:5rem; right:3rem; z-index:2; opacity:0.12;
+    width:60px; height:90px;
+    background: var(--yellow);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+  }
+  .hero-content {
+    position:relative; z-index:2; max-width:1100px; margin:0 auto; width:100%;
+  }
+  .hero-tag {
+    font-weight:500; font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase;
+    color:var(--yellow); margin-bottom:2rem;
+    display:flex; align-items:center; gap:1rem;
+    animation: fadeUp 0.8s ease-out both;
+  }
+  .hero-tag::before { content:''; width:40px; height:1px; background:var(--yellow); }
+  .hero-title {
+    font-family:'Noto Serif','Noto Serif KR',serif; font-weight:700;
+    font-size:clamp(2.0rem,4.7vw,3.8rem); line-height:1.1; /* Reduced font size by ~15% */
+    margin-bottom:1.5rem; max-width:900px;
+    animation: fadeUp 0.8s 0.15s ease-out both;
+  }
+  .hero-title em { font-style:italic; color:var(--yellow); font-weight:400; }
+  .hero-sub {
+    font-family:'Noto Serif','Noto Serif KR',serif;
+    font-size:clamp(1rem,1.8vw,1.3rem); font-weight:400;
+    color:rgba(253,253,253,0.65); max-width:680px;
+    line-height:1.7; margin-bottom:2.5rem;
+    animation: fadeUp 0.8s 0.3s ease-out both;
+  }
+  .hero-meta {
+    display:flex; flex-wrap:wrap; gap:2.5rem; margin-bottom:2.5rem;
+    animation: fadeUp 0.8s 0.45s ease-out both;
+  }
+  .hero-meta-item { display:flex; flex-direction:column; gap:0.25rem; }
+  .hero-meta-label { font-size:0.6rem; text-transform:uppercase; letter-spacing:0.2em; color:rgba(253,253,253,0.35); }
+  .hero-meta-value { font-weight:500; font-size:1rem; }
+  .hero-cta {
+    display:flex; flex-wrap:wrap; gap:1rem; align-items:center;
+    animation: fadeUp 0.8s 0.6s ease-out both;
+  }
+  .btn-register {
+    display:inline-flex; align-items:center; gap:0.75rem;
+    background:var(--yellow); color:var(--navy);
+    text-decoration:none; font-weight:700; font-size:0.85rem;
+    letter-spacing:0.08em; text-transform:uppercase;
+    padding:1rem 2.4rem; border:none; cursor:pointer;
+    transition: all 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .btn-register::after { content:'→'; transition:transform 0.3s ease; }
+  .btn-register:hover { background:#fff; transform:translateY(-2px); box-shadow:0 8px 30px rgba(255,215,0,0.3); }
+  .btn-register:hover::after { transform:translateX(4px); }
+  .btn-secondary {
+    display:inline-flex; align-items:center; gap:0.5rem;
+    color:rgba(253,253,253,0.5); text-decoration:none;
+    font-size:0.85rem; font-weight:400; letter-spacing:0.04em;
+    padding:1rem 0.5rem; transition:color 0.3s;
+  }
+  .btn-secondary:hover { color:var(--yellow); }
+
+  .scroll-hint {
+    position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); z-index:2;
+    display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+    animation: fadeUp 0.8s 1s ease-out both;
+  }
+  .scroll-hint span { font-size:0.55rem; text-transform:uppercase; letter-spacing:0.2em; color:rgba(253,253,253,0.25); }
+  .scroll-line { width:1px; height:40px; background:linear-gradient(to bottom,rgba(253,253,253,0.25),transparent); animation:pulse 2s ease-in-out infinite; }
+
+  /* ── SECTIONS ── */
+  section { padding:6rem 2rem; }
+  .container { max-width:1100px; margin:0 auto; }
+  .section-label {
+    font-size:0.62rem; text-transform:uppercase; letter-spacing:0.25em;
+    color:var(--navy); font-weight:600; margin-bottom:1rem;
+    display:flex; align-items:center; gap:0.75rem;
+  }
+  .section-label::before { content:''; width:24px; height:2px; background:var(--yellow); }
+  .section-title {
+    font-family:'Noto Serif','Noto Serif KR',serif; font-weight:700;
+    font-size:clamp(1.8rem,3.5vw,2.8rem); line-height:1.15;
+    margin-bottom:2rem; color:var(--navy);
+  }
+
+  /* ── FULL-WIDTH SLIDER ── */
+  .image-slider {
+    padding: 0; 
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: var(--navy);
+    height: 65vh;
+    min-height: 400px;
+  }
+  .slider-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.85; 
+  }
+  .slider-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .slider-btn {
+    pointer-events: auto;
+    background: rgba(28, 40, 51, 0.7);
+    color: var(--yellow);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+  .slider-btn:hover {
+    background: var(--yellow);
+    color: var(--navy);
+    transform: scale(1.05);
+  }
+  .slider-dots {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.8rem;
+    z-index: 10;
+  }
+  .slider-dot {
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(253, 253, 253, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+  }
+  .slider-dot.active {
+    background: var(--yellow);
+    transform: scale(1.3);
+  }
+
+  /* ── ABOUT ── */
+  .about { background:var(--white); }
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+  .about-text p { font-size:1rem; line-height:1.85; color:var(--text-muted); margin-bottom:1.5rem; }
+  .about-hosts {
+    padding:2.5rem; background:var(--navy); color:var(--white);
+    border-left:4px solid var(--yellow);
+  }
+  .about-hosts h3 {
+    font-family:'Noto Serif','Noto Serif KR',serif; font-size:1.2rem;
+    font-weight:600; margin-bottom:1.2rem; color:var(--yellow);
+  }
+  .host-list { list-style:none; display:flex; flex-direction:column; gap:0.8rem; }
+  .host-list li {
+    font-size:0.88rem; line-height:1.5; color:rgba(253,253,253,0.75);
+    padding-left:1rem; position:relative;
+  }
+  .host-list li::before {
+    content:''; position:absolute; left:0; top:0.55em;
+    width:5px; height:5px; background:var(--yellow); border-radius:50%;
+  }
+
+  /* ── THEMES ── */
+  .themes { background:#f8f8f6; }
+  .themes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem; margin-top:2.5rem; }
+  .theme-card {
+    padding:2rem; background:var(--white);
+    border:1px solid rgba(0,0,0,0.06); position:relative;
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+    border-top:3px solid var(--yellow);
+  }
+  .theme-card:hover { transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,0,0,0.06); }
+  .theme-num {
+    font-family:'Noto Serif','Noto Serif KR',serif; font-size:2.5rem; font-weight:700;
+    color:rgba(255,215,0,0.2); line-height:1; margin-bottom:0.75rem;
+  }
+  .theme-card h3 {
+    font-family:'Noto Serif','Noto Serif KR',serif; font-size:1.05rem;
+    font-weight:600; line-height:1.5; color:var(--navy);
+  }
+
+  /* ── KEYNOTES ── */
+  .keynotes { background:var(--white); }
+  .keynote-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; margin-top:2.5rem; }
+  .keynote-card {
+    display:flex; gap:1.5rem; padding:2rem; background:#f8f8f6;
+    border:1px solid rgba(0,0,0,0.05);
+    transition:transform 0.3s, box-shadow 0.3s;
+  }
+  .keynote-card:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(0,0,0,0.06); }
+  .keynote-photo {
+    width:110px; height:110px; border-radius:50%; object-fit:cover;
+    border:3px solid var(--yellow); flex-shrink:0;
+  }
+  .keynote-info h3 {
+    font-family:'Noto Serif','Noto Serif KR',serif; font-size:1.15rem;
+    font-weight:600; color:var(--navy); margin-bottom:0.35rem;
+  }
+  .keynote-info .role { font-size:0.82rem; color:var(--text-muted); line-height:1.5; }
+
+  /* ── PROGRAMME ── */
+  .programme { background:var(--navy); color:var(--white); }
+  .programme .section-label { color:var(--yellow); }
+  .programme .section-label::before { background:var(--yellow); }
+  .programme .section-title { color:var(--white); }
+  .day-tabs {
+    display:flex; gap:0; margin-bottom:3rem;
+    border-bottom:1px solid rgba(253,253,253,0.1);
+  }
+  .day-tab {
+    padding:1.2rem 2rem; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.12em; font-weight:500; color:rgba(253,253,253,0.35);
+    cursor:pointer; border-bottom:2px solid transparent;
+    transition:all 0.3s; background:none; border-top:none; border-left:none;
+    border-right:none; font-family:'Noto Sans','Noto Sans KR',sans-serif;
+  }
+  .day-tab.active { color:var(--white); border-bottom-color:var(--yellow); }
+  .day-tab:hover { color:rgba(253,253,253,0.7); }
+  .day-content { display:none; }
+  .day-content.active { display:block; }
+  .programme-items { display:flex; flex-direction:column; gap:2rem; }
+  .programme-item {
+    display:grid; grid-template-columns:3px 1fr; gap:1.5rem;
+    padding-bottom:2rem; border-bottom:1px solid rgba(253,253,253,0.06);
+  }
+  .programme-item:last-child { border-bottom:none; }
+  .item-accent { background:var(--yellow); border-radius:2px; }
+  .item-accent.memorial { background:#7F8C8D; }
+  .item-content h3 {
+    font-family:'Noto Serif','Noto Serif KR',serif; font-size:1.2rem;
+    font-weight:600; margin-bottom:0.5rem;
+  }
+  .item-content p { font-size:0.88rem; line-height:1.7; color:rgba(253,253,253,0.5); }
+  .speaker-name { display:inline; color:rgba(253,253,253,0.85); font-weight:500; }
+  .speaker-role { font-size:0.8rem; color:rgba(253,253,253,0.4); font-style:italic; }
+  .speakers-list { margin-top:0.75rem; display:flex; flex-direction:column; gap:0.5rem; }
+  .speaker-entry { padding-left:0.75rem; border-left:1px solid rgba(255,215,0,0.2); }
+
+  /* ── VENUE ── */
+  .venue { background:#f8f8f6; }
+  .venue-grid { display:grid; grid-template-columns:1.2fr 1fr; gap:4rem; align-items:start; }
+  .venue-text p { font-size:1rem; line-height:1.85; color:var(--text-muted); margin-bottom:1.5rem; }
+  .venue-video {
+    background:var(--navy); padding:2rem; display:flex;
+    flex-direction:column; gap:1rem;
+  }
+  .venue-video-label { font-size:0.6rem; text-transform:uppercase; letter-spacing:0.2em; color:rgba(253,253,253,0.35); margin-bottom: 0.5rem; }
+  /* Responsive YouTube Embed */
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+  }
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ── AUDIENCE ── */
+  .audience { background:var(--white); }
+  .audience-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:1rem; margin-top:2.5rem;
+  }
+  .audience-item {
+    padding:1.5rem; background:#f8f8f6; border:1px solid rgba(0,0,0,0.04);
+    font-size:0.9rem; color:var(--text-muted);
+    display:flex; align-items:center; gap:0.75rem;
+    transition:transform 0.25s ease;
+  }
+  .audience-item:hover { transform:translateX(4px); }
+  .audience-dot { width:6px; height:6px; background:var(--yellow); border-radius:50%; flex-shrink:0; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background:var(--navy); color:var(--white);
+    text-align:center; padding:5rem 2rem;
+    position:relative; overflow:hidden;
+  }
+  .cta-section::before {
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,215,0,0.06), transparent);
+  }
+  .cta-section .container { position:relative; z-index:1; }
+  .cta-section .section-title { color:var(--white); margin-bottom:1rem; }
+  .cta-desc { font-size:1rem; color:rgba(253,253,253,0.6); max-width:600px; margin:0 auto 2.5rem; line-height:1.7; }
+  .cta-register {
+    display:inline-flex; align-items:center; gap:0.75rem;
+    background:var(--yellow); color:var(--navy);
+    text-decoration:none; font-weight:700; font-size:0.9rem;
+    letter-spacing:0.08em; text-transform:uppercase;
+    padding:1.1rem 2.8rem; transition:all 0.35s ease;
+    margin-bottom:3rem;
+  }
+  .cta-register::after { content:'→'; transition:transform 0.3s ease; }
+  .cta-register:hover { background:#fff; transform:translateY(-2px); box-shadow:0 10px 30px rgba(255,215,0,0.25); }
+  .cta-register:hover::after { transform:translateX(4px); }
+  .contact-cards { display:flex; justify-content:center; gap:3rem; flex-wrap:wrap; }
+  .contact-card { text-align:left; }
+  .contact-card .name {
+    font-family:'Noto Serif','Noto Serif KR',serif;
+    font-size:1.05rem; font-weight:600; margin-bottom:0.25rem;
+  }
+  .contact-card .org { font-size:0.78rem; color:rgba(253,253,253,0.45); margin-bottom:0.5rem; }
+  .contact-card a {
+    color:var(--yellow); font-size:0.82rem;
+    text-decoration:underline; text-underline-offset:3px; transition:opacity 0.3s;
+  }
+  .contact-card a:hover { opacity:0.7; }
+
+  /* ── FOOTER ── */
+  footer {
+    background:#111c25; color:rgba(253,253,253,0.25);
+    padding:3rem 2rem; text-align:center;
+  }
+  .sponsors-label { font-size:0.55rem; text-transform:uppercase; letter-spacing:0.25em; margin-bottom:1.2rem; color:rgba(253,253,253,0.2); }
+  .sponsors { display:flex; justify-content:center; gap:2.5rem; flex-wrap:wrap; font-size:0.8rem; color:rgba(253,253,253,0.35); margin-bottom:2rem; }
+  .footer-copy { font-size:0.7rem; color:rgba(253,253,253,0.15); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:0.8} }
+  .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:768px) {
+    .about-grid,.venue-grid,.keynote-grid { grid-template-columns:1fr; gap:2rem; }
+    .themes-grid { grid-template-columns:1fr; }
+    section { padding:4rem 1.5rem; }
+    .hero { padding:5rem 1.5rem 3rem; }
+    .hero-ribbon { display:none; }
+    .image-slider { height: 40vh; min-height: 250px; }
+    .slider-controls { padding: 0 1rem; }
+    .slider-btn { width: 40px; height: 40px; font-size: 1rem; }
+    .day-tab { padding:1rem 1rem; font-size:0.68rem; }
+    .contact-cards { gap:2rem; }
+    .top-bar { padding:0.6rem 1rem; }
+    .nav-links a { display:none; }
+    .keynote-card { flex-direction:column; align-items:center; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top-bar">
+  <span class="logo">4.16 International Conference</span>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#themes">Themes</a>
+    <a href="#programme">Programme</a>
+    <a href="#register">Register</a>
+    <a href="index-kr.html" class="lang-toggle">한국어</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-ribbon"></div>
+  <div class="hero-content">
+    <div class="hero-tag">International Conference</div>
+    <h1 class="hero-title">Innovating Disaster Education for Preparedness &amp; Resilience:<br><em>from Memory to Action</em></h1>
+    <p class="hero-sub">A two-day gathering of scholars, educators, archivists, practitioners and communities exploring new directions in disaster education at the intersection of memory, resilience and social justice.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Date</span><span class="hero-meta-value">15 – 16 April 2026</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Venue</span><span class="hero-meta-value">4.16 Institute for Life &amp; Safety Education</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Location</span><span class="hero-meta-value">Ansan, South Korea</span></div>
+    </div>
+    <div class="hero-cta">
+      <a href="mailto:w.park@soton.ac.uk?subject=Conference%20Registration%20%E2%80%93%20Innovating%20Disaster%20Education&body=Dear%20Organising%20Committee%2C%0D%0A%0D%0AI%20would%20like%20to%20register%20for%20the%20conference.%0D%0A%0D%0AName%3A%0D%0AAffiliation%3A%0D%0A%0D%0AThank%20you." class="btn-register">Register Now</a>
+      <a href="#programme" class="btn-secondary">View Programme ↓</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<section class="image-slider">
+  <div class="slider-wrapper" id="slider-wrapper">
+    <div class="slide"><img src="https://placehold.co/1920x800/1C2833/FFD700?text=Conference+Plenary+Session" alt="Plenary Session"></div>
+    <div class="slide"><img src="https://placehold.co/1920x800/2C3E50/FDFDFD?text=4.16+Memory+Archive" alt="Memory Archive"></div>
+    <div class="slide"><img src="https://placehold.co/1920x800/7F8C8D/1C2833?text=Community+Dialogue" alt="Community Dialogue"></div>
+  </div>
+  <div class="slider-controls">
+    <button class="slider-btn" onclick="moveSlide(-1)" aria-label="Previous Slide">&#10094;</button>
+    <button class="slider-btn" onclick="moveSlide(1)" aria-label="Next Slide">&#10095;</button>
+  </div>
+  <div class="slider-dots">
+    <button class="slider-dot active" onclick="setSlide(0)" aria-label="Slide 1"></button>
+    <button class="slider-dot" onclick="setSlide(1)" aria-label="Slide 2"></button>
+    <button class="slider-dot" onclick="setSlide(2)" aria-label="Slide 3"></button>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container reveal">
+    <span class="section-label">About the Conference</span>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="section-title">Critical Reflection, Cross-Sector Dialogue &amp; Creative Collaboration</h2>
+        <p>This conference gathers scholars, educators, archivists, disaster-affected families, practitioners, policymakers and community organisations from around the world to explore new directions in disaster education. It is designed as a space for critical reflection, cross-sector dialogue and creative collaboration, positioned at the intersection of memory, resilience, social justice, preparedness and the pursuit of peaceful, safe communities.</p>
+        <p>The event takes place at the 4.16 Institute, a nationally significant site for remembrance, learning and public engagement following the Sewol Ferry disaster.</p>
+      </div>
+      <div class="about-hosts">
+        <h3>Co-hosts</h3>
+        <ul class="host-list">
+          <li>The University of Southampton, UK</li>
+          <li>Gyeonggido Office of Education 4.16 Institute for Life and Safety Education</li>
+          <li>The 4.16 Memory Archives, Ansan, South Korea</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="themes" id="themes">
+  <div class="container reveal">
+    <span class="section-label">Conference Themes</span>
+    <h2 class="section-title">Key Areas of Inquiry</h2>
+    <div class="themes-grid">
+      <div class="theme-card"><div class="theme-num">01</div><h3>Memory, testimony and community archives in education for disaster justice</h3></div>
+      <div class="theme-card"><div class="theme-num">02</div><h3>Innovative pedagogies for cultivating preparedness and resilience across learning settings</h3></div>
+      <div class="theme-card"><div class="theme-num">03</div><h3>Cross-sector approaches involving schools, museums, NGOs and survivor networks</h3></div>
+      <div class="theme-card"><div class="theme-num">04</div><h3>Ethical engagement with trauma, commemoration and lived experience</h3></div>
+      <div class="theme-card"><div class="theme-num">05</div><h3>Policy and curriculum development for safety education, democratic citizenship and youth empowerment</h3></div>
+    </div>
+  </div>
+</section>
+
+<section class="keynotes">
+  <div class="container reveal">
+    <span class="section-label">Keynote Speakers</span>
+    <h2 class="section-title">Opening Keynote Lectures</h2>
+    <div class="keynote-grid">
+      <div class="keynote-card">
+        <img class="keynote-photo" src="https://placehold.co/220x220/1C2833/FFD700?text=Noah+Rauch" alt="Noah Rauch">
+        <div class="keynote-info">
+          <h3>Noah Rauch</h3>
+          <p class="role">Senior Vice President, Education &amp; Public Programs<br>The National September 11 Memorial &amp; Museum</p>
+        </div>
+      </div>
+      <div class="keynote-card">
+        <img class="keynote-photo" src="https://placehold.co/220x220/1C2833/FFD700?text=Maxime+Polleri" alt="Maxime Polleri">
+        <div class="keynote-info">
+          <h3>Maxime Polleri</h3>
+          <p class="role">Assistant Professor<br>Université Laval, Canada</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="programme" id="programme">
+  <div class="container reveal">
+    <span class="section-label">Programme</span>
+    <h2 class="section-title">Two Days of Learning &amp; Remembrance</h2>
+    <div class="day-tabs">
+      <button class="day-tab active" onclick="switchDay(0)">15 April — Conference Day</button>
+      <button class="day-tab" onclick="switchDay(1)">16 April — Memorial &amp; Culture</button>
+    </div>
+    <div class="day-content active" id="day-0">
+      <div class="programme-items">
+        <div class="programme-item"><div class="item-accent"></div><div class="item-content">
+          <h3>Opening Keynote Lectures</h3><p>International experts in disaster studies, education and memorialisation.</p>
+        </div></div>
+        <div class="programme-item"><div class="item-accent"></div><div class="item-content">
+          <h3>Panel &amp; Roundtable Discussions</h3><p>Educators, activists and researchers in dialogue.</p>
+          <div class="speakers-list">
+            <div class="speaker-entry"><span class="speaker-name">Francis D. H. Lee</span> · <span class="speaker-role">Director, Trans-Education for Peace Institute</span></div>
+            <div class="speaker-entry"><span class="speaker-name">A-Young Moon</span> · <span class="speaker-role">Director, Peacemomo</span></div>
+            <div class="speaker-entry"><span class="speaker-name">Taehong Min</span> · <span class="speaker-role">Teacher, Gyeongan High School</span></div>
+            <div class="speaker-entry"><span class="speaker-name">Daekwang Shin</span> · <span class="speaker-role">Teacher, Singil Middle School</span></div>
+            <div class="speaker-entry"><span class="speaker-name">Joonho Lee</span> · <span class="speaker-role">Headteacher, Ain Elementary School</span></div>
+            <div class="speaker-entry" style="color:rgba(253,253,253,0.3);font-size:0.8rem;font-style:italic;padding-top:0.25rem;">More discussants will be announced soon.</div>
+          </div>
+        </div></div>
+        <div class="programme-item"><div class="item-accent"></div><div class="item-content">
+          <h3>Innovation Showcases</h3><p>Memory-based pedagogies, disaster simulations, community-centred curriculum design and museum-based learning.</p>
+        </div></div>
+        <div class="programme-item"><div class="item-accent"></div><div class="item-content">
+          <h3>Guided Tours &amp; Live Lessons</h3><p>Visit the 4.16 Memory Classrooms and archival spaces — student belongings, community narratives and material objects as powerful educational resources. Observe live lessons at the 4.16 Institute for primary school children.</p>
+        </div></div>
+      </div>
+    </div>
+    <div class="day-content" id="day-1">
+      <div class="programme-items">
+        <div class="programme-item"><div class="item-accent memorial"></div><div class="item-content"><h3>Official Memorial Service</h3><p>Participation in the memorial service for the Sewol Ferry disaster victims.</p></div></div>
+        <div class="programme-item"><div class="item-accent memorial"></div><div class="item-content"><h3>Cultural Events &amp; Commemoration</h3><p>Cultural events across Ansan to commemorate the Sewol Ferry disaster.</p></div></div>
+        <div class="programme-item"><div class="item-accent memorial"></div><div class="item-content"><h3>Site Visits in Ansan</h3><p>Visits to significant sites connected to remembrance and community recovery.</p></div></div>
+        <div class="programme-item"><div class="item-accent memorial"></div><div class="item-content"><h3>Optional Cultural Activities</h3><p>Local history, civic engagement initiatives and youth-led projects.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="venue" id="venue">
+  <div class="container reveal">
+    <span class="section-label">The Venue</span>
+    <div class="venue-grid">
+      <div class="venue-text">
+        <h2 class="section-title">4.16 Institute for Life &amp; Safety Education</h2>
+        <p>The Institute serves as a major archive and educational hub dedicated to democratic citizenship, safety education and the preservation of memory related to the Sewol Ferry disaster. It houses an extensive collection of documents, artefacts and physical objects gathered since 16 April 2014.</p>
+        <p>The Danwon High School 4.16 Memory Classrooms — intact classrooms preserved as they were on the day of the students' final attendance — are among its most significant holdings. The Institute provides programmes for students, teachers, communities and professionals, supporting ongoing public reflection and action for a safer society.</p>
+      </div>
+      <div class="venue-video">
+        <div class="venue-video-label">10th Anniversary Documentary</div>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/Faakf3P0uB4?si=9l2j_A-5gS1lI-wz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="audience" id="attend">
+  <div class="container reveal">
+    <span class="section-label">Who Should Attend</span>
+    <h2 class="section-title">The Conference Is Open To</h2>
+    <div class="audience-grid">
+      <div class="audience-item"><span class="audience-dot"></span>Academics &amp; researchers</div>
+      <div class="audience-item"><span class="audience-dot"></span>Teachers &amp; school leaders</div>
+      <div class="audience-item"><span class="audience-dot"></span>Curriculum developers</div>
+      <div class="audience-item"><span class="audience-dot"></span>Disaster practitioners</div>
+      <div class="audience-item"><span class="audience-dot"></span>Archivists &amp; museum educators</div>
+      <div class="audience-item"><span class="audience-dot"></span>Disaster survivors &amp; families</div>
+      <div class="audience-item"><span class="audience-dot"></span>Policymakers &amp; NGOs</div>
+      <div class="audience-item"><span class="audience-dot"></span>Community activists &amp; youth groups</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="register">
+  <div class="container reveal">
+    <h2 class="section-title">Register for the Conference</h2>
+    <p class="cta-desc">To register or for any enquiries, please get in touch with the organising team below.</p>
+    <a href="mailto:w.park@soton.ac.uk?subject=Conference%20Registration%20%E2%80%93%20Innovating%20Disaster%20Education&body=Dear%20Organising%20Committee%2C%0D%0A%0D%0AI%20would%20like%20to%20register.%0D%0A%0D%0AName%3A%0D%0AAffiliation%3A%0D%0A%0D%0AThank%20you." class="cta-register">Register Now</a>
+    <div class="contact-cards">
+      <div class="contact-card"><div class="name">Wonyong Park</div><div class="org">University of Southampton</div><a href="mailto:w.park@soton.ac.uk">w.park@soton.ac.uk</a></div>
+      <div class="contact-card"><div class="name">Eunhwa Lee</div><div class="org">4.16 Institute for Life &amp; Safety Education</div><a href="mailto:2005wha@korea.kr">2005wha@korea.kr</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="sponsors-label">Sponsors</div>
+  <div class="sponsors"><span>Ansan Hope Foundation</span><span>4.16 Memory Archives</span><span>Gyeonggido Office of Education 4.16 Institute</span></div>
+  <div class="footer-copy">&copy; 2026 Innovating Disaster Education Conference. All rights reserved.</div>
+</footer>
+
+<script>
+// Tab Switching
+function switchDay(idx){
+  document.querySelectorAll('.day-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+  document.querySelectorAll('.day-content').forEach((c,i)=>c.classList.toggle('active',i===idx));
+}
+
+// Scroll Reveal
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Image Slider Logic
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.slider-dot');
+const wrapper = document.getElementById('slider-wrapper');
+const totalSlides = slides.length;
+let slideInterval;
+
+function updateSlider() {
+  wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+  dots.forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlide);
+  });
+}
+
+function moveSlide(direction) {
+  currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+  updateSlider();
+  resetInterval();
+}
+
+function setSlide(index) {
+  currentSlide = index;
+  updateSlider();
+  resetInterval();
+}
+
+function startInterval() {
+  slideInterval = setInterval(() => {
+    moveSlide(1);
+  }, 6000); // 6 seconds auto-slide
+}
+
+function resetInterval() {
+  clearInterval(slideInterval);
+  startInterval();
+}
+
+// Initialize Slider
+if (slides.length > 0) {
+  startInterval();
+}
+</script>
+</body>
+</html>
