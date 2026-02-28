@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register — Innovating Disaster Education Conference</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Sans:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+  :root {
+    --yellow: #FFD700;
+    --navy: #1C2833;
+    --navy-light: #2C3E50;
+    --white: #FDFDFD;
+    --bg-alt: #f8f8f6;
+    --text: #1A252F;
+    --text-muted: #546E7A;
+    --border: #D1D5DB;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
+    background: var(--bg-alt);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding: 4rem 1rem;
+  }
+
+  .form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--white);
+    border-top: 4px solid var(--yellow);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    padding: 3rem;
+  }
+
+  .form-header {
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1.5rem;
+  }
+
+  .section-label {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::before { content:''; width:24px; height:2px; background:var(--yellow); }
+
+  .form-title {
+    font-family: 'Noto Serif', serif;
+    font-size: 2rem;
+    color: var(--navy);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.53; /* 10% reduction */
+  }
+
+  /* ── FORM ELEMENTS ── */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    color: var(--navy);
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text);
+    transition: all 0.3s ease;
+    background: var(--white);
+  }
+
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(28, 40, 51, 0.05);
+  }
+
+  .help-text {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    line-height: 1.35; /* 10% reduction */
+  }
+
+  /* ── CUSTOM CHECKBOX/RADIO ── */
+  .options-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .option-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .option-item input {
+    margin-top: 0.25rem;
+    accent-color: var(--navy);
+  }
+
+  /* ── BUTTON ── */
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: var(--navy);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1.1rem 2.8rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .btn-submit:hover {
+    background: var(--yellow);
+    color: var(--navy);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+
+  .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .back-link:hover { color: var(--navy); }
+
+  @media (max-width: 600px) {
+    .form-container { padding: 2rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    .form-title { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="form-container">
+  <div class="form-header">
+    <span class="section-label">Registration</span>
+    <h1 class="form-title">Join the Dialogue</h1>
+    <p class="form-subtitle">Please complete the form below to secure your place at the 4.16 International Conference in Ansan.</p>
+  </div>
+
+  <form action="#" method="POST">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="fname">Full Name</label>
+        <input type="text" id="fname" name="fullname" placeholder="e.g. Jane Doe" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="jane@university.edu" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="org">Affiliation / Organisation</label>
+      <input type="text" id="org" name="organisation" placeholder="University, School, or NGO name" required>
+    </div>
+
+    <div class="form-group">
+      <label>Attendance Preference</label>
+      <div class="options-group">
+        <label class="option-item">
+          <input type="radio" name="attendance" value="both" checked>
+          Full Conference (15–16 April)
+        </label>
+        <label class="option-item">
+          <input type="radio" name="attendance" value="day1">
+          Day 1 Only: International Conference (15 April)
+        </label>
+        <label class="option-item">
+          <input type="radio" name="attendance" value="day2">
+          Day 2 Only: Memorial & Cultural Visit (16 April)
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="requirements">Dietary or Access Requirements</label>
+      <textarea id="requirements" name="requirements" rows="3" placeholder="Please mention any allergies, dietary preferences (e.g. Vegetarian), or accessibility needs..."></textarea>
+      <p class="help-text">We aim to make the conference inclusive and comfortable for all participants.</p>
+    </div>
+
+    <div class="form-group" style="margin-top: 2rem;">
+      <label class="option-item">
+        <input type="checkbox" name="privacy" required>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">
+          I consent to the collection of my data for conference administrative purposes and understand that photos may be taken during the event for archival use.
+        </span>
+      </label>
+    </div>
+
+    <button type="submit" class="btn-submit">Confirm Registration</button>
+  </form>
+
+  <a href="index.html" class="back-link">← Return to Conference Info</a>
+</div>
+
+</body>
+</html>
